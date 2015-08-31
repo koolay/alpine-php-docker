@@ -1,8 +1,6 @@
 FROM 1science/alpine:3.1
 
 EXPOSE 3306
-RUN adduser -S mysql
-RUN addgroup -S db
 
 RUN apk-install mysql && \
     mkdir -p /var/lib/mysql && \
