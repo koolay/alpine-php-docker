@@ -32,7 +32,7 @@ RUN apk-install openssl-dev pcre-dev zlib-dev wget build-base && \
 RUN mkdir -p /app/logs
 RUN mkdir -p /app/www
 
-ADD conf/ /etc/nginx/
+#ADD conf/ /etc/nginx/
 
 RUN ln -sf /dev/stdout /app/logs/access.log
 RUN ln -sf /dev/stderr /app/logs/error.log

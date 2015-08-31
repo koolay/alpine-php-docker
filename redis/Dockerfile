@@ -14,6 +14,7 @@ ADD redis.service /etc/service/redis/run
 
 RUN chmod 775  -R /etc/service/redis/
 RUN chmod 775 /etc/redis-local.conf
+RUN chmod 775 -R /etc/redis.conf && chmod 777 -R /etc/redis-local.conf
 
 VOLUME ["/data"]
 

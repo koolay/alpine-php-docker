@@ -1,0 +1,33 @@
+
+server {
+
+    listen 8080;
+
+    server_name example.com;
+    # Path for static files
+    root /app/www/phpinfo;
+    index index.html index.php;
+
+    #Specify a charset
+    charset utf-8;
+
+    # Custom 404 page
+    error_page 404 /404.html;
+    # Pass PHP scripts to PHP-FPM
+    location / {
+        try_files $uri /index.php?$args;
+    }
+
+    location ~* \.php$ {
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_pass fpm:9000;
+        fastcgi_index index.php;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PATH_INFO $fastcgi_path_info;
+    }
+
+
+# Include the basic h5bp config set
+    include h5bp/basic.conf;
+}

@@ -18,18 +18,21 @@ nginx:
     ports:
       - "8080:8080"
     links:
-      - "php"
+      - "fpm"
     volumes:
       - ./nginx/conf:/etc/nginx
-      - ./nginx/app:/app
+      - ./app:/app
 
-php:
+fpm:
     build: ./php
-    ports:
-      - "9000:9000"
+    #ports:
+    #  - "9000:9000"
     links:
       - "mysql"
       - "redis"
     volumes:
-      - ./php/conf:/etc/php
+     - ./php/conf/php-fpm.conf:/etc/php/php-fpm.conf
+     - ./php/conf/php.ini:/etc/php/php.ini
+     - ./php/conf/pool.d/www.conf:/etc/php/fpm/pool.d/www.conf
+     - ./app:/app
 

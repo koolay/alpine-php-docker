@@ -1,0 +1,30 @@
+
+server {
+
+    listen 8080;
+
+    server_name example.com;
+    index index.php;
+    # Path for static files
+    root /app/www/phpinfo;
+
+    #Specify a charset
+    charset utf-8;
+
+    # Custom 404 page
+    error_page 404 /404.html;
+    # Pass PHP scripts to PHP-FPM
+
+    location ~* \.php$ {
+        fastcgi_index   index.php;
+        fastcgi_pass    127.0.0.1:9000;
+        #fastcgi_pass   unix:/var/run/php-fpm/php-fpm.sock;
+        include         fastcgi_params;
+        fastcgi_param   SCRIPT_FILENAME    $document_root$fastcgi_script_name;
+        fastcgi_param   SCRIPT_NAME        $fastcgi_script_name;
+    }
+
+
+# Include the basic h5bp config set
+    include h5bp/basic.conf;
+}
