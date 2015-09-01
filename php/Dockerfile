@@ -7,16 +7,13 @@ RUN apk --update --no-progress add \
 	&& rm -rf /var/cache/apk/* \
 	&& curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN adduser -S www
-RUN addgroup -S www
-
-ADD conf/ /etc/php/php-fpm.conf
-ADD conf/ /etc/php/php.ini
+RUN adduser -S www-data
+#RUN addgroup -S www-data
 
 ADD fpm.service /etc/service/php-fpm/run
 
 RUN chmod 775  -R /etc/service/php-fpm/
 
-EXPOSE 9000
+#EXPOSE 9000
 CMD ["s6-svscan", "-t0", "/etc/service"]
 
