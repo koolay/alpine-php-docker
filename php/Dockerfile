@@ -14,6 +14,6 @@ ADD fpm.service /etc/service/php-fpm/run
 
 RUN chmod 775  -R /etc/service/php-fpm/
 
-#EXPOSE 9000
+EXPOSE 9000
 CMD ["s6-svscan", "-t0", "/etc/service"]
 
