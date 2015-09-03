@@ -16,6 +16,7 @@ RUN apk-install mysql && \
 
 VOLUME ["/var/lib/mysql", "/etc/mysql/conf.d/"]
 RUN chown -R mysql /var/lib/mysql
-ENTRYPOINT ["mysqld"]
 
-CMD ["--skip-grant-tables"]
+ADD mysql.service /etc/service/mysql/run
+RUN chmod 775  -R /etc/service/mysql/
+CMD ["s6-svscan", "-t0", "/etc/service"]

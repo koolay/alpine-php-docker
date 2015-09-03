@@ -1,16 +1,16 @@
 
-#mysql:
-#    build: ./mysql
-#    ports:
-#      - "3306:3306"
-#    volumes:
-#      - ./mysql/data:/var/lib/mysql
-#      
+mysql:
+    build: ./mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+      
 
-#redis:
-#    build: ./redis
-#    ports:
-#      - "6378:6379"
+redis:
+    build: ./redis
+    ports:
+      - "6378:6379"
 
 nginx:
     build: ./nginx
@@ -24,11 +24,11 @@ nginx:
 
 fpm:
     build: ./php
-    ports:
-      - "9000:9000"
-    #links:
-    #  - "mysql"
-    #  - "redis"
+    #ports: #这里不需要暴露
+    #  - "9000:9000"
+    links:
+      - "mysql"
+      - "redis"
     volumes:
      - ./php/conf/php-fpm.conf:/etc/php/php-fpm.conf
      - ./php/conf/php.ini:/etc/php/php.ini

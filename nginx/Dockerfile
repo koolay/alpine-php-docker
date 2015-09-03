@@ -31,6 +31,8 @@ RUN apk --update add openssl-dev pcre-dev zlib-dev wget build-base && \
 # Forward request and error logs to docker log collector
 RUN mkdir -p /app/logs
 RUN mkdir -p /app/www
+RUN adduser -S www
+RUN chown www -R /app && chown www -R /etc/nginx
 
 #ADD conf/ /etc/nginx/
 
