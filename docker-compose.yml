@@ -24,8 +24,8 @@ nginx:
 
 fpm:
     build: ./php
-    #ports:
-    #  - "9000:9000"
+    ports:
+      - "9000:9000"
     #links:
     #  - "mysql"
     #  - "redis"

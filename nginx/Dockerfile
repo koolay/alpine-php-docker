@@ -8,7 +8,7 @@ FROM 1science/alpine:3.1
 ENV NGINX_VERSION=1.9.0 NGINX_HOME=/usr/share/nginx CONSUL_TEMPLATE_VERSION=0.9.0
 
 # Build Nginx from source and install consul template
-RUN apk-install openssl-dev pcre-dev zlib-dev wget build-base && \
+RUN apk --update add openssl-dev pcre-dev zlib-dev wget build-base && \
     curl -Ls http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz | tar -xz -C /tmp && \
     cd /tmp/nginx-${NGINX_VERSION} && \
     ./configure \
