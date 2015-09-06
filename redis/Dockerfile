@@ -2,7 +2,7 @@
 FROM 1science/alpine:3.1
 
 # Install redis
-RUN apk add --update redis && \
+RUN apk --update add redis && \
     rm -rf /var/cache/apk/* && \
     mkdir /data && \
     chown -R redis:redis /data && \

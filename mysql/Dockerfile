@@ -2,21 +2,15 @@ FROM 1science/alpine:3.1
 
 EXPOSE 3306
 
-RUN apk-install mysql && \
-    mkdir -p /var/lib/mysql && \
+RUN apk --update add mysql && \
+    mkdir -p /opt/data && \
     mkdir -p /etc/mysql/conf.d && \
-    { \
-        echo '[mysqld]'; \
-        echo 'user = mysql'; \
-        echo 'datadir = /var/lib/mysql'; \
-        echo 'port = 3306'; \
-        echo 'log-bin = /var/lib/mysql/mysql-bin'; \
-        echo '!includedir /etc/mysql/conf.d/'; \
-    } > /etc/mysql/my.cnf
 
-VOLUME ["/var/lib/mysql", "/etc/mysql/conf.d/"]
-RUN chown -R mysql /var/lib/mysql
+VOLUME ["/opt/data"]
 
 ADD mysql.service /etc/service/mysql/run
-RUN chmod 775  -R /etc/service/mysql/
+RUN chown mysql -R /opt/data/
+RUN chown mysql -R /etc/mysql/
+RUN chmod 775 -R /etc/service/mysql/
+
 CMD ["s6-svscan", "-t0", "/etc/service"]

@@ -4,8 +4,8 @@ mysql:
     ports:
       - "3306:3306"
     volumes:
-      - ./mysql/data:/var/lib/mysql
-      
+      - ./mysql/data:/opt/data
+      - ./mysql/conf/my.cnf:/etc/mysql/my.cnf
 
 redis:
     build: ./redis
