@@ -2,15 +2,15 @@ FROM 1science/alpine:3.1
 
 EXPOSE 3306
 
-RUN apk --update add mysql && \
-    mkdir -p /opt/data && \
-    mkdir -p /etc/mysql/conf.d && \
+RUN apk --update add mysql
+RUN mkdir -p /opt/data
+RUN mkdir -p /etc/mysql/conf.d
 
-VOLUME ["/opt/data"]
+RUN chown -R mysql:mysql /opt/data
+RUN chown -R mysql:mysql /etc/mysql
 
 ADD mysql.service /etc/service/mysql/run
-RUN chown mysql -R /opt/data/
-RUN chown mysql -R /etc/mysql/
 RUN chmod 775 -R /etc/service/mysql/
 
+VOLUME ["/opt/data"]
 CMD ["s6-svscan", "-t0", "/etc/service"]
