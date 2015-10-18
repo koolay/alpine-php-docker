@@ -1,6 +1,6 @@
 
 mysql:
-    build: ./mysql
+    image: koolay/alpine-mysql
     ports:
       - "3306:3306"
     volumes:
@@ -8,12 +8,12 @@ mysql:
       - ./mysql/conf/my.cnf:/etc/mysql/my.cnf
 
 redis:
-    build: ./redis
+    image: koolay/alpine-redis
     ports:
       - "6378:6379"
 
 nginx:
-    build: ./nginx
+    image: koolay/alpine-nginx
     ports:
       - "8080:8080"
     links:
@@ -23,7 +23,7 @@ nginx:
       - ./app:/app
 
 fpm:
-    build: ./php
+    image: koolay/alpine-php
     #ports: #这里不需要暴露
     #  - "9000:9000"
     links:
