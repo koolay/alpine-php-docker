@@ -1,6 +1,6 @@
 
 mysql:
-    image: koolay/alpine-mysql
+    image: daocloud.io/koolay/alpine-mysql:latest
     ports:
       - "3306:3306"
     volumes:
@@ -8,12 +8,12 @@ mysql:
       - ./mysql/conf/my.cnf:/etc/mysql/my.cnf
 
 redis:
-    image: koolay/alpine-redis
+    image: daocloud.io/koolay/alpine-redis:latest
     ports:
       - "6378:6379"
 
 nginx:
-    image: koolay/alpine-nginx
+    image: daocloud.io/koolay/alpine-nginx:latest
     ports:
       - "8080:8080"
     links:
@@ -23,7 +23,7 @@ nginx:
       - ./app:/app
 
 fpm:
-    image: koolay/alpine-php
+    image: daocloud.io/koolay/alpine-php:latest
     #ports: #这里不需要暴露
     #  - "9000:9000"
     links:
