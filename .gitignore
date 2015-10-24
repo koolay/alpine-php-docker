@@ -1,3 +1,6 @@
 app/logs/
 mysql/data/
 redis/data/
+.idea/
+.idea
+
