@@ -24,8 +24,8 @@ nginx:
 
 fpm:
     image: daocloud.io/koolay/alpine-php:latest
-    #ports: #这里不需要暴露
-    #  - "9000:9000"
+    expose:
+      - "9000"
     links:
       - "mysql"
       - "redis"
